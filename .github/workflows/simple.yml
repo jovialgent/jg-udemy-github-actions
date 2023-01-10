@@ -1,26 +1,28 @@
 name: Shell Commands
 
-on: [push]
+on:
+  pull_request:
+    types: [closed, assigned, opened, reopened]
 
-jobs: 
-  run-shell-command: 
+jobs:
+  run-shell-command:
     runs-on: ubuntu-latest
-    steps: 
+    steps:
       - name: echo a string
         run: echo "Hello World!"
       - name: multiline script
-        run: | 
+        run: |
           node -v
           npm -v
       - name: python Command
-        run : |
+        run: |
           import platform
           print(platform.processor())
         shell: python
   run-windows-commands:
     runs-on: windows-latest
-    needs: ['run-shell-command']
-    steps: 
+    needs: ["run-shell-command"]
+    steps:
       - name: Directory Powershell
         run: Get-Location
       - name: Directory Bash
