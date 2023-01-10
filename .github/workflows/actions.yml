@@ -1,6 +1,9 @@
 name: Actions Workflow
 
 on:
+  repository_dispatch:
+    types:
+      - 'on-demand-test'
   pull_request:
     types:
       - "opened"
